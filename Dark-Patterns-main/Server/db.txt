@@ -1,0 +1,30 @@
+-- Create the url_data table
+CREATE TABLE url_data (
+  id SERIAL PRIMARY KEY,
+  url VARCHAR(255) NOT NULL,
+  total_score INTEGER,
+  cookies_score INTEGER,
+  terms_and_conditions_score INTEGER,
+  report_details JSONB,
+  timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Insert test data for Amazon.in
+INSERT INTO url_data (url, total_score, cookies_score, terms_and_conditions_score, report_details)
+VALUES (
+  'https://www.amazon.in/',
+  80, -- Total Score (Assuming a percentage)
+  20, -- Cookies Score (Assuming a percentage)
+  90, -- Terms and Conditions Score (Assuming a percentage)
+  '{"cookies": "Some cookies detected", "termsAndConditions": "Analyzed and compliant"}'::jsonb
+);
+
+-- Insert test data for Flipkart.in
+INSERT INTO url_data (url, total_score, cookies_score, terms_and_conditions_score, report_details)
+VALUES (
+  'https://www.flipkart.in/',
+  60, -- Total Score (Assuming a percentage)
+  10, -- Cookies Score (Assuming a percentage)
+  70, -- Terms and Conditions Score (Assuming a percentage)
+  '{"cookies": "No cookies detected", "termsAndConditions": "Analyzed and compliant"}'::jsonb
+);
